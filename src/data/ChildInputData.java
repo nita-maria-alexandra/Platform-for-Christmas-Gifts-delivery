@@ -27,7 +27,7 @@ public class ChildInputData {
 
         private List<GiftInputData> receivedGifts = new ArrayList<>();
 
-        private final Double niceScoreBonus;
+        private double niceScoreBonus;
 
         private String elf;
 
@@ -36,7 +36,7 @@ public class ChildInputData {
             this.lastName = null;
             this.firstName = null;
             this.city = null;
-            this.niceScoreBonus = null;
+            this.niceScoreBonus = 0.0;
             this.elf = null;
         }
 
@@ -55,7 +55,8 @@ public class ChildInputData {
                 this.receivedGifts.add(new GiftInputData(gift));
             }
             this.averageScore = childInputData.getAverageScore();
-            niceScoreBonus = null;
+            this.niceScoreBonus = childInputData.getNiceScoreBonus();
+            this.elf = childInputData.getElf();
         }
 
         /**
@@ -134,7 +135,7 @@ public class ChildInputData {
         /**
          * @return returneaza @niceScoreHistory
          */
-        public java.util.List<Double> getNiceScoreHistory() {
+        public List<Double> getNiceScoreHistory() {
             return niceScoreHistory;
         }
 
@@ -169,7 +170,7 @@ public class ChildInputData {
         /**
          * @return returneaza @receivedGifts
          */
-        public java.util.List<GiftInputData> getReceivedGifts() {
+        public List<GiftInputData> getReceivedGifts() {
             return receivedGifts;
         }
 
@@ -184,14 +185,25 @@ public class ChildInputData {
          *
          * @return ..
          */
+        @com.fasterxml.jackson.annotation.JsonIgnore
         public Double getNiceScoreBonus() {
                 return niceScoreBonus;
         }
 
         /**
          *
+         * @param niceScoreBonus ...
+         */
+        @com.fasterxml.jackson.annotation.JsonProperty
+        public void setNiceScoreBonus(double niceScoreBonus) {
+                this.niceScoreBonus = niceScoreBonus;
+        }
+
+    /**
+         *
          * @return ...
          */
+        @com.fasterxml.jackson.annotation.JsonIgnore
         public String getElf() {
                 return elf;
         }
@@ -200,6 +212,7 @@ public class ChildInputData {
          * 
          * @param elf ...
          */
+        @com.fasterxml.jackson.annotation.JsonProperty
         public void setElf(String elf) {
                 this.elf = elf;
             }

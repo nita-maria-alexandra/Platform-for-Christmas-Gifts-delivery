@@ -63,20 +63,26 @@ public final class Main {
         }
 
         ApplyCommands commands = new ApplyCommands();
+        commands.apply(new commands.CreateCityList(input.getInitialData().getCities()));
         commands.apply(new AverageCommand(input.getInitialData().getChildren()));
         commands.apply(new BudgetCommand(input.getInitialData().getChildren(),
                 input.getSantaBudget()));
-        commands.apply(new GiftsCommand(input));
+        commands.apply(new commands.AverageCityCommand(input.getNiceScoreCity(),
+                input.getInitialData().getChildren(),input.getInitialData().getCities()));
+        commands.apply(new GiftsCommand(input, "id"));
 
         out.getAnnualChildren().add(new Children(input.getInitialData().getChildren()));
 
         for (int j = 0; j < input.getNumberOfYears(); j++) {
+            System.out.println(i);
             commands.apply(new UpdateCommand(input.getInitialData().getChildren(),
                     input.getAnnualChanges().get(j), input));
             commands.apply(new AverageCommand(input.getInitialData().getChildren()));
             commands.apply(new BudgetCommand(input.getInitialData().getChildren(),
                     input.getSantaBudget()));
-            commands.apply(new GiftsCommand(input));
+            commands.apply(new commands.AverageCityCommand(input.getNiceScoreCity(),
+                    input.getInitialData().getChildren(),input.getInitialData().getCities()));
+            commands.apply(new GiftsCommand(input, input.getAnnualChanges().get(j).getStrategy()));
 
             out.getAnnualChildren().add(new Children(input.getInitialData().getChildren()));
         }

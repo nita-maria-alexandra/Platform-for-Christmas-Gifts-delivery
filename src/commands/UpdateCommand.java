@@ -8,12 +8,12 @@ import input.Input;
 import java.util.List;
 
 public class UpdateCommand implements commands.Command {
-    private final java.util.List<data.ChildInputData> childInputData;
-    private final data.AnnualChanges changes;
-    private final input.Input input;
+    private final List<ChildInputData> childInputData;
+    private final AnnualChanges changes;
+    private final Input input;
 
-    public UpdateCommand(final java.util.List<data.ChildInputData> childInputData, final data.AnnualChanges changes,
-                         final input.Input input) {
+    public UpdateCommand(final List<ChildInputData> childInputData, final AnnualChanges changes,
+                         final Input input) {
         this.childInputData = childInputData;
         this.changes = changes;
         this.input = input;
@@ -23,7 +23,7 @@ public class UpdateCommand implements commands.Command {
      * Mareste cu 1 varsta fiecarui copil
      */
     public void updateAge() {
-        for (data.ChildInputData child:childInputData) {
+        for (ChildInputData child:childInputData) {
             child.setAge(child.getAge() + 1);
             child.getReceivedGifts().clear();
         }
@@ -33,10 +33,10 @@ public class UpdateCommand implements commands.Command {
      * Adauga noii copii in lista
      */
     public void addChildrenList() {
-        for (data.ChildInputData child:changes.getNewChildren()) {
+        for (ChildInputData child:changes.getNewChildren()) {
             if (child.getAge() <= common.Constants.EIGHTEEN) {
                 child.getNiceScoreHistory().add(child.getNiceScore());
-                childInputData.add(new data.ChildInputData(child));
+                childInputData.add(new ChildInputData(child));
             }
         }
     }
@@ -45,10 +45,11 @@ public class UpdateCommand implements commands.Command {
      * Face update fiecarui copil aflat in lista de updates, care are cel mult 18 ani
      */
     public void updateChildren() {
-        for (data.ChildUpdate update:changes.getChildrenUpdates()) {
-            for (data.ChildInputData child:childInputData) {
+        for (ChildUpdate update:changes.getChildrenUpdates()) {
+            for (ChildInputData child:childInputData) {
                 if (child.getAge() <= common.Constants.EIGHTEEN) {
                     if (update.getId().compareTo(child.getId()) == 0) {
+                        child.setElf(update.getElf());
                         if (update.getNiceScore() != null) {
                             child.getNiceScoreHistory().add(update.getNiceScore());
                         }
@@ -80,5 +81,6 @@ public class UpdateCommand implements commands.Command {
         addChildrenList();
         input.getInitialData().getSantaGiftsList().addAll(changes.getNewGifts());
         input.setSantaBudget(changes.getNewSantaBudget());
+        input.getNiceScoreCity().clear();
     }
 }

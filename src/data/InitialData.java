@@ -1,11 +1,14 @@
 package data;
 
 import java.util.List;
+import java.util.ArrayList;
 
 public class InitialData {
-    private java.util.List<ChildInputData> children;
+    private List<ChildInputData> children;
 
-    private java.util.List<GiftInputData> santaGiftsList;
+    private List<GiftInputData> santaGiftsList;
+
+    private List<String> cities = new ArrayList<>();
 
     public InitialData() {
 
@@ -15,7 +18,7 @@ public class InitialData {
      *
      * @return returneaza @children
      */
-    public java.util.List<ChildInputData> getChildren() {
+    public List<ChildInputData> getChildren() {
         return children;
     }
 
@@ -23,8 +26,16 @@ public class InitialData {
      *
      * @return returneaza @santaGiftsList
      */
-    public java.util.List<GiftInputData> getSantaGiftsList() {
+    public List<GiftInputData> getSantaGiftsList() {
         return santaGiftsList;
+    }
+
+    /**
+     *
+     * @return ...
+     */
+    public List<String> getCities() {
+        return cities;
     }
 
     /**

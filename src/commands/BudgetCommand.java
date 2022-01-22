@@ -5,10 +5,10 @@ import data.ChildInputData;
 import java.util.List;
 
 public class BudgetCommand implements commands.Command {
-    private final java.util.List<data.ChildInputData> childInputData;
+    private final List<data.ChildInputData> childInputData;
     private final double santaBudget;
 
-    public BudgetCommand(final java.util.List<data.ChildInputData> childInputData, final double santaBudget) {
+    public BudgetCommand(final List<ChildInputData> childInputData, final double santaBudget) {
         this.childInputData = childInputData;
         this.santaBudget = santaBudget;
     }
@@ -20,7 +20,7 @@ public class BudgetCommand implements commands.Command {
     public Double budgetUnit() {
         double sum = 0.0;
 
-        for (data.ChildInputData child:childInputData) {
+        for (ChildInputData child:childInputData) {
             if (child.getAge().compareTo(common.Constants.EIGHTEEN) <= 0) {
                 sum += child.getAverageScore();
             }
@@ -37,10 +37,20 @@ public class BudgetCommand implements commands.Command {
     @Override
     public void execute() {
         double budgetUnit = budgetUnit();
+        double budget;
 
-        for (data.ChildInputData child:childInputData) {
+        for (ChildInputData child:childInputData) {
             if (child.getAge().compareTo(common.Constants.EIGHTEEN) <= 0) {
-                child.setAssignedBudget(child.getAverageScore() * budgetUnit);
+                budget = child.getAverageScore() * budgetUnit;
+
+                if (child.getElf().compareTo("black") == 0) {
+                    budget -= budget * 30 / 100;
+                } else {
+                    if (child.getElf().compareTo("pink") == 0) {
+                        budget += budget * 30 / 100;
+                    }
+                }
+                child.setAssignedBudget(budget);
             }
         }
 

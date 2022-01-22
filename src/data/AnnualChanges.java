@@ -41,7 +41,7 @@ public class AnnualChanges {
      *
      * @return returneaza @newChildren
      */
-    public java.util.List<ChildInputData> getNewChildren() {
+    public List<ChildInputData> getNewChildren() {
         return newChildren;
     }
 
@@ -49,7 +49,7 @@ public class AnnualChanges {
      *
      * @return returneaza childrenUpdates
      */
-    public java.util.List<ChildUpdate> getChildrenUpdates() {
+    public List<ChildUpdate> getChildrenUpdates() {
         return childrenUpdates;
     }
 

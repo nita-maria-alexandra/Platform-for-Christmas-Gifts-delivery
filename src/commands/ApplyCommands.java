@@ -3,7 +3,7 @@ package commands;
 import java.util.LinkedList;
 
 public class ApplyCommands {
-    private final java.util.LinkedList<Command> history = new java.util.LinkedList<>();
+    private final LinkedList<Command> history = new LinkedList<>();
 
     /**
      *

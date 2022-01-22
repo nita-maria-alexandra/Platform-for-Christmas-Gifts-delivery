@@ -1,6 +1,10 @@
 package input;
 
 import java.util.List;
+import java.util.Map;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.SortedMap;
 
 import data.InitialData;
 import data.AnnualChanges;
@@ -11,28 +15,32 @@ public class Input {
 
     private double santaBudget;
 
-    private final data.InitialData initialData;
+    private final InitialData initialData;
 
-    private final java.util.List<data.AnnualChanges> annualChanges;
+    private final List<AnnualChanges> annualChanges;
 
-    private final java.util.List<data.ChildInputData> children;
+    private final List<ChildInputData> children;
+
+    private LinkedHashMap<String, Double> niceScoreCity;
 
     public Input() {
         this.numberOfYears = null;
         this.santaBudget = 0;
         this.initialData = null;
         this.annualChanges = null;
-        this.children = new java.util.ArrayList<>();
+        this.children = new ArrayList<>();
+        this.niceScoreCity = new LinkedHashMap<>();
     }
 
     public Input(final Integer numberOfYears, final double santaBudget,
-                 final data.InitialData initialData,
-                 final java.util.List<data.AnnualChanges> annualChanges, final java.util.List<data.ChildInputData> children) {
+                 final InitialData initialData,
+                 final List<AnnualChanges> annualChanges, final List<ChildInputData> children) {
         this.numberOfYears = numberOfYears;
         this.santaBudget = santaBudget;
         this.initialData = initialData;
         this.annualChanges = annualChanges;
         this.children = children;
+        //this.niceScoreCity = null;
     }
 
     /**
@@ -63,7 +71,7 @@ public class Input {
      *
      * @return returneaza @initialData
      */
-    public data.InitialData getInitialData() {
+    public InitialData getInitialData() {
         return initialData;
     }
 
@@ -71,7 +79,7 @@ public class Input {
      *
      * @return returneaza @annualChanges
      */
-    public java.util.List<data.AnnualChanges> getAnnualChanges() {
+    public List<AnnualChanges> getAnnualChanges() {
         return annualChanges;
     }
 
@@ -79,10 +87,17 @@ public class Input {
      *
      * @return returneaza @children
      */
-    public java.util.List<data.ChildInputData> getChildren() {
+    public List<data.ChildInputData> getChildren() {
         return children;
     }
 
+    /**
+     *
+     * @return ...
+     */
+    public LinkedHashMap<String, Double> getNiceScoreCity() {
+        return niceScoreCity;
+    }
 
     /**
      *

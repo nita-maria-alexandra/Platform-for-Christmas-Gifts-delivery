@@ -1,13 +1,14 @@
 package commands;
 
 import data.ChildInputData;
+import builder.BonusBuilder;
 
 import java.util.List;
 
 public class AverageCommand implements commands.Command {
-    private final java.util.List<data.ChildInputData> childInputData;
+    private final List<ChildInputData> childInputData;
 
-    public AverageCommand(final java.util.List<data.ChildInputData> childInputData) {
+    public AverageCommand(final List<ChildInputData> childInputData) {
         this.childInputData = childInputData;
     }
 
@@ -15,9 +16,9 @@ public class AverageCommand implements commands.Command {
      *
      * Calculeaza averageScore pentru copiii din categoria "Kid"
      */
-    public Double averageKid(final data.ChildInputData childInputData1) {
+    public Double averageKid(final ChildInputData childInputData1) {
         Double sum = 0.0;
-        java.util.List<Double> averagescore = childInputData1.getNiceScoreHistory();
+        List<Double> averagescore = childInputData1.getNiceScoreHistory();
 
         for (Double score:averagescore) {
             sum += score;
@@ -32,10 +33,10 @@ public class AverageCommand implements commands.Command {
      *
      * Calculeaza averageScore pentru copiii din categoria "Teen"
      */
-    public Double averageTeen(final data.ChildInputData childInputData1) {
+    public Double averageTeen(final ChildInputData childInputData1) {
         double sum1 = 0.0;
         int sum2 = 0, nr = 0;
-        java.util.List<Double> averageScore = childInputData1.getNiceScoreHistory();
+        List<Double> averageScore = childInputData1.getNiceScoreHistory();
 
         for (Double score:averageScore) {
             nr++;
@@ -53,17 +54,22 @@ public class AverageCommand implements commands.Command {
      */
     @Override
     public void execute() {
-        for (data.ChildInputData child:childInputData) {
+        BonusBuilder bonus;
+        for (ChildInputData child:childInputData) {
             if (child.getAge() < common.Constants.FIVE) {
                 child.setAverageScore(common.Constants.TEN);
             } else {
                 if (child.getAge() >= common.Constants.FIVE
                         && child.getAge() < common.Constants.TWELVE) {
-                    child.setAverageScore(averageKid(child));
+                    bonus = new BonusBuilder.Builder(averageKid(child))
+                                    .applyBonus(child.getNiceScoreBonus()).build();
+                    child.setAverageScore(bonus.getAverageScore());
                 } else {
                     if (child.getAge() >= common.Constants.TWELVE
                             && child.getAge() <= common.Constants.EIGHTEEN) {
-                        child.setAverageScore(averageTeen(child));
+                        bonus = new BonusBuilder.Builder(averageTeen(child))
+                                .applyBonus(child.getNiceScoreBonus()).build();
+                        child.setAverageScore(bonus.getAverageScore());
                     }
                 }
             }
