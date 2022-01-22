@@ -1,6 +1,8 @@
 package builder;
 
-public class BonusBuilder {
+import common.Constants;
+
+public final class BonusBuilder {
     private final Double averageScore;
 
     public static class Builder {
@@ -10,24 +12,33 @@ public class BonusBuilder {
             this.averageScore = averageScore;
         }
 
+        /**
+         *
+         * @param niceScoreBonus ...
+         * @return ...
+         */
         public Builder applyBonus(final Double niceScoreBonus) {
             if (averageScore != 0) {
-                averageScore += averageScore * niceScoreBonus / 100;
+                averageScore += averageScore * niceScoreBonus / Constants.ONE_HUNDRED;
             }
 
-            if (Double.compare(averageScore, 10.0) >= 0) {
-                averageScore = 10.0;
+            if (Double.compare(averageScore, Constants.TEN_DOUBLE) >= 0) {
+                averageScore = Constants.TEN_DOUBLE;
             }
 
             return this;
         }
 
+        /**
+         *
+         * @return ...
+         */
         public BonusBuilder build() {
             return new BonusBuilder(this);
         }
     }
 
-    private BonusBuilder(Builder builder) {
+    private BonusBuilder(final Builder builder) {
         this.averageScore = builder.averageScore;
     }
 

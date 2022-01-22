@@ -13,8 +13,6 @@ import commands.GiftsCommand;
 import java.io.IOException;
 import java.io.File;
 import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.Files;
 
 /**
  * Class used to run the code
@@ -51,6 +49,11 @@ public final class Main {
         Checker.calculateScore();
     }
 
+    /**
+     *
+     * @param i ...
+     * @throws IOException ...
+     */
     public static void action(final int i) throws IOException {
         writeo.AnnualChildren out = new writeo.AnnualChildren();
 
@@ -68,20 +71,19 @@ public final class Main {
         commands.apply(new BudgetCommand(input.getInitialData().getChildren(),
                 input.getSantaBudget()));
         commands.apply(new commands.AverageCityCommand(input.getNiceScoreCity(),
-                input.getInitialData().getChildren(),input.getInitialData().getCities()));
+                input.getInitialData().getChildren(), input.getInitialData().getCities()));
         commands.apply(new GiftsCommand(input, "id"));
 
         out.getAnnualChildren().add(new Children(input.getInitialData().getChildren()));
 
         for (int j = 0; j < input.getNumberOfYears(); j++) {
-            System.out.println(i);
             commands.apply(new UpdateCommand(input.getInitialData().getChildren(),
                     input.getAnnualChanges().get(j), input));
             commands.apply(new AverageCommand(input.getInitialData().getChildren()));
             commands.apply(new BudgetCommand(input.getInitialData().getChildren(),
                     input.getSantaBudget()));
             commands.apply(new commands.AverageCityCommand(input.getNiceScoreCity(),
-                    input.getInitialData().getChildren(),input.getInitialData().getCities()));
+                    input.getInitialData().getChildren(), input.getInitialData().getCities()));
             commands.apply(new GiftsCommand(input, input.getAnnualChanges().get(j).getStrategy()));
 
             out.getAnnualChildren().add(new Children(input.getInitialData().getChildren()));

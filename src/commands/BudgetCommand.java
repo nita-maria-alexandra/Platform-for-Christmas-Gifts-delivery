@@ -1,6 +1,7 @@
 package commands;
 
 import data.ChildInputData;
+import common.Constants;
 
 import java.util.List;
 
@@ -44,10 +45,10 @@ public class BudgetCommand implements commands.Command {
                 budget = child.getAverageScore() * budgetUnit;
 
                 if (child.getElf().compareTo("black") == 0) {
-                    budget -= budget * 30 / 100;
+                    budget -= budget * Constants.THIRTY / Constants.ONE_HUNDRED;
                 } else {
                     if (child.getElf().compareTo("pink") == 0) {
-                        budget += budget * 30 / 100;
+                        budget += budget * Constants.THIRTY / Constants.ONE_HUNDRED;
                     }
                 }
                 child.setAssignedBudget(budget);

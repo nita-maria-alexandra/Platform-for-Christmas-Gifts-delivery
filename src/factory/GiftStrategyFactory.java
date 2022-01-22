@@ -1,21 +1,24 @@
 package factory;
 
 import strategy.GiftStrategy;
-import strategy.niceScoreCityGifts;
-import strategy.niceScoreGifts;
-import strategy.idGift;
 import input.Input;
 
 public class GiftStrategyFactory {
+    /**
+     *
+     * @param strategyType ...
+     * @param input ...
+     * @return ...
+     */
     public GiftStrategy createStrategy(final String strategyType, final Input input) {
         if (strategyType.equals("id")) {
-            return new idGift(input);
+            return new strategy.IdGift(input);
         }
 
         if (strategyType.equals("niceScore")) {
-            return new niceScoreGifts(input);
+            return new strategy.NiceScoreGifts(input);
         }
 
-        return new niceScoreCityGifts(input);
+        return new strategy.NiceScoreCityGifts(input);
     }
 }

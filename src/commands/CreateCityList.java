@@ -5,10 +5,13 @@ import java.util.List;
 public class CreateCityList implements Command {
     private final List<String> cities;
 
-    public CreateCityList(List<String> cities) {
+    public CreateCityList(final List<String> cities) {
         this.cities = cities;
     }
 
+    /**
+     *
+     */
     @Override
     public void execute() {
         cities.add("Bucuresti");

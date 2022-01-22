@@ -63,7 +63,7 @@ public class GiftInputData {
      * @param quantity ...
      */
     @com.fasterxml.jackson.annotation.JsonProperty
-    public void setQuantity(int quantity) {
+    public void setQuantity(final int quantity) {
         this.quantity = quantity;
     }
 

@@ -20,5 +20,8 @@ public final class Constants {
     public static final int TEN = 10;
     public static final int TWELVE = 12;
     public static final int EIGHTEEN = 18;
+    public static final double TEN_DOUBLE = 10.0;
+    public static final int ONE_HUNDRED = 100;
+    public static final int THIRTY = 30;
 
 }

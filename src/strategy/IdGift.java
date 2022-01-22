@@ -5,19 +5,24 @@ import data.GiftInputData;
 import input.Input;
 import java.util.List;
 import java.util.LinkedList;
-import java.util.Comparator;
 
-public class niceScoreGifts implements GiftStrategy {
+public class IdGift implements GiftStrategy {
     private final List<ChildInputData> childInputData;
     private final List<GiftInputData> gifts;
     private final Input input;
 
-    public niceScoreGifts(final Input input) {
+    public IdGift(final Input input) {
         this.childInputData = input.getInitialData().getChildren();
         this.gifts = input.getInitialData().getSantaGiftsList();
         this.input = input;
     }
 
+    /**
+     *
+     * @param category ...
+     * @param budgetSum ...
+     * @return ...
+     */
     public GiftInputData findgift(final String category, final double budgetSum) {
         GiftInputData giftInputData = null;
         enums.Category category1 = utils.Utils.stringToCategory(category);
@@ -27,13 +32,11 @@ public class niceScoreGifts implements GiftStrategy {
                 if (giftInputData == null) {
                     if (Double.compare(budgetSum, gift.getPrice()) > 0) {
                         giftInputData = gift;
-                        //gift.setQuantity(gift.getQuantity() - 1);
                     }
                 } else {
                     if (gift.getPrice() < giftInputData.getPrice()) {
                         if (Double.compare(budgetSum, gift.getPrice()) > 0) {
                             giftInputData = gift;
-                            //gift.setQuantity(gift.getQuantity() - 1);
                         }
                     }
                 }
@@ -43,23 +46,15 @@ public class niceScoreGifts implements GiftStrategy {
         return giftInputData;
     }
 
+    /**
+     *
+     */
     @Override
     public void giftList() {
+        commands.ApplyCommands commands = new commands.ApplyCommands();
         LinkedList<String> prefgifts;
         GiftInputData gift;
         double budget;
-
-        childInputData.sort((c1, c2) -> {
-            if (Double.compare(c1.getNiceScore(), c2.getNiceScore()) == 0) {
-                return c1.getId().compareTo(c2.getId());
-            }
-            return Double.compare(c2.getNiceScore(), c1.getNiceScore());
-        });
-
-        //java.util.Collections.reverse(childInputData);
-
-        //System.out.println(childInputData);
-        //System.out.println();
 
         for (ChildInputData child:childInputData) {
             if (child.getAge() <= common.Constants.EIGHTEEN) {
@@ -75,17 +70,19 @@ public class niceScoreGifts implements GiftStrategy {
                                 gift.setQuantity(gift.getQuantity() - 1);
                             }
                         }
+                        if (child.getReceivedGifts().isEmpty()
+                                && child.getElf().compareTo("yellow") == 0) {
+                            commands.apply(new commands.YellowElfCommand(child, gifts));
+                        }
                     }
                 }
             }
         }
-        childInputData.sort(Comparator.comparing(ChildInputData::getId));
 
         for (ChildInputData child:childInputData) {
             if (child.getAge() <= common.Constants.EIGHTEEN) {
                 input.getChildren().add(new ChildInputData(child));
             }
         }
-
     }
 }

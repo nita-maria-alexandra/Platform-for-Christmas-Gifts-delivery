@@ -21,13 +21,19 @@ public class AverageCityCommand implements Command {
         this.cities = cities;
     }
 
-    public Double getNiceScoreCity(String city) {
+    /**
+     *
+     * @param city ...
+     * @return ...
+     */
+    public Double getNiceScoreCity(final String city) {
         double sum = 0.0;
         int nr = 0;
 
         for (ChildInputData child:childInputData) {
-            if (child.getCity().compareTo(city) == 0) {
-                nr ++;
+            if (child.getAge() <= common.Constants.EIGHTEEN
+                    && child.getCity().compareTo(city) == 0) {
+                nr++;
                 sum += child.getAverageScore();
             }
         }
@@ -40,6 +46,9 @@ public class AverageCityCommand implements Command {
         return -1.0;
     }
 
+    /**
+     *
+     */
     @Override
     public void execute() {
         double niceScore;
@@ -60,11 +69,6 @@ public class AverageCityCommand implements Command {
         }
 
         niceScoreCity2.putAll(map);
-        System.out.println(niceScoreCity2);
         niceScoreCity.putAll(niceScoreCity2);
-        System.out.println(niceScoreCity);
-        System.out.println();
-
-
     }
 }

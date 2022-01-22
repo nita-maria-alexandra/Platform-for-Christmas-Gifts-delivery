@@ -195,7 +195,7 @@ public class ChildInputData {
          * @param niceScoreBonus ...
          */
         @com.fasterxml.jackson.annotation.JsonProperty
-        public void setNiceScoreBonus(double niceScoreBonus) {
+        public void setNiceScoreBonus(final double niceScoreBonus) {
                 this.niceScoreBonus = niceScoreBonus;
         }
 
@@ -209,11 +209,11 @@ public class ChildInputData {
         }
 
         /**
-         * 
+         *
          * @param elf ...
          */
         @com.fasterxml.jackson.annotation.JsonProperty
-        public void setElf(String elf) {
+        public void setElf(final String elf) {
                 this.elf = elf;
             }
 
