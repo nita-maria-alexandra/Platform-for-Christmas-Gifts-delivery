@@ -32,7 +32,7 @@ public class InitialData {
 
     /**
      *
-     * @return ...
+     * @return returneaza @cities
      */
     public List<String> getCities() {
         return cities;

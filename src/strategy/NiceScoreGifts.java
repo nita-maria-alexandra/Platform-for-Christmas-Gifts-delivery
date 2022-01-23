@@ -19,36 +19,7 @@ public class NiceScoreGifts implements GiftStrategy {
     }
 
     /**
-     *
-     * @param category ...
-     * @param budgetSum ...
-     * @return ...
-     */
-    public GiftInputData findgift(final String category, final double budgetSum) {
-        GiftInputData giftInputData = null;
-        enums.Category category1 = utils.Utils.stringToCategory(category);
-
-        for (GiftInputData gift:gifts) {
-            if (category1.equals(gift.getCategory()) && gift.getQuantity() > 0) {
-                if (giftInputData == null) {
-                    if (Double.compare(budgetSum, gift.getPrice()) > 0) {
-                        giftInputData = gift;
-                    }
-                } else {
-                    if (gift.getPrice() < giftInputData.getPrice()) {
-                        if (Double.compare(budgetSum, gift.getPrice()) > 0) {
-                            giftInputData = gift;
-                        }
-                    }
-                }
-            }
-        }
-
-        return giftInputData;
-    }
-
-    /**
-     *
+     * Atribuie fiecarui copil cadourile, in ordinea  scorurilor de cumintenie
      */
     @Override
     public void giftList() {
@@ -56,6 +27,7 @@ public class NiceScoreGifts implements GiftStrategy {
         LinkedList<String> prefgifts;
         GiftInputData gift;
         double budget;
+        IdGift find = new IdGift(input);
 
         childInputData.sort((c1, c2) -> {
             if (Double.compare(c1.getAverageScore(), c2.getAverageScore()) == 0) {
@@ -71,7 +43,7 @@ public class NiceScoreGifts implements GiftStrategy {
                 if (budget != 0) {
                     if (prefgifts != null) {
                         for (String preference : prefgifts) {
-                            gift = findgift(preference, budget);
+                            gift = find.findgift(preference, budget);
                             if (gift != null) {
                                 budget -= gift.getPrice();
                                 child.getReceivedGifts().add(gift);

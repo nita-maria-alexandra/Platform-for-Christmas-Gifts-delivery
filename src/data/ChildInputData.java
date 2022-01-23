@@ -183,7 +183,7 @@ public class ChildInputData {
 
         /**
          *
-         * @return ..
+         * @return returneaza @niceScoreBonus
          */
         @com.fasterxml.jackson.annotation.JsonIgnore
         public Double getNiceScoreBonus() {
@@ -192,16 +192,16 @@ public class ChildInputData {
 
         /**
          *
-         * @param niceScoreBonus ...
+         * setter
          */
         @com.fasterxml.jackson.annotation.JsonProperty
         public void setNiceScoreBonus(final double niceScoreBonus) {
                 this.niceScoreBonus = niceScoreBonus;
         }
 
-    /**
+        /**
          *
-         * @return ...
+         * @return returneaza @elf
          */
         @com.fasterxml.jackson.annotation.JsonIgnore
         public String getElf() {
@@ -210,14 +210,14 @@ public class ChildInputData {
 
         /**
          *
-         * @param elf ...
+         * setter
          */
         @com.fasterxml.jackson.annotation.JsonProperty
         public void setElf(final String elf) {
                 this.elf = elf;
             }
 
-    /**
+        /**
          * Suprascrie metoda toString()
          */
         @Override

@@ -6,9 +6,7 @@ import input.Input;
 public class GiftStrategyFactory {
     /**
      *
-     * @param strategyType ...
-     * @param input ...
-     * @return ...
+     * Creeaza o noua strategie, de tipul @strategyType, pe care o returneaza
      */
     public GiftStrategy createStrategy(final String strategyType, final Input input) {
         if (strategyType.equals("id")) {

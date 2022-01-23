@@ -44,7 +44,7 @@ public class ChildUpdate {
 
     /**
      *
-     * @return ...
+     * @return returneaza @elf
      */
     public String getElf() {
         return elf;

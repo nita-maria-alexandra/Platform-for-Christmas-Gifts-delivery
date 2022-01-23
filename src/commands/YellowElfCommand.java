@@ -11,8 +11,8 @@ public class YellowElfCommand implements  Command {
 
     /**
      *
-     * @param child ...
-     * @param gifts ...
+     * @param child lista de copii
+     * @param gifts lista de cadouri disponibile ale  mosului
      */
     public YellowElfCommand(final ChildInputData child, final List<GiftInputData> gifts) {
         this.child = child;
@@ -21,8 +21,8 @@ public class YellowElfCommand implements  Command {
 
     /**
      *
-     * @param category ...
-     * @return ...
+     * Returneaza cel mai ieftin cadou, care are cantitatea mai mare ca zero,
+     * din categoria preferata de copil
      */
     public GiftInputData findgift(final String category) {
         GiftInputData giftInputData = null;
@@ -48,7 +48,7 @@ public class YellowElfCommand implements  Command {
     }
 
     /**
-     *
+     * Ofera copilului cel mai ieftin cadou din lista de cadouri favorite a acestuia
      */
     @Override
     public void execute() {

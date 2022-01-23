@@ -19,9 +19,7 @@ public class IdGift implements GiftStrategy {
 
     /**
      *
-     * @param category ...
-     * @param budgetSum ...
-     * @return ...
+     * Atribuie copilului cadoul din catgoria @category, care nu depaseste @budgetSum
      */
     public GiftInputData findgift(final String category, final double budgetSum) {
         GiftInputData giftInputData = null;
@@ -47,7 +45,7 @@ public class IdGift implements GiftStrategy {
     }
 
     /**
-     *
+     * Atribuie fiecarui copil cadourile, in ordinea id-urilor
      */
     @Override
     public void giftList() {

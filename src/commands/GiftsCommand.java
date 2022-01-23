@@ -13,13 +13,7 @@ public class GiftsCommand implements commands.Command {
     }
 
     /**
-     *
-     * Atribuie copilului cadoul din catgoria @category, care nu depaseste @budgetSum
-     */
-
-
-    /**
-     * Atribuie fiecarui copil cadourile
+     * Atribuie fiecarui copil cadourile, in functie de @strategy
      */
     @Override
     public void execute() {

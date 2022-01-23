@@ -18,36 +18,7 @@ public class NiceScoreCityGifts implements GiftStrategy {
     }
 
     /**
-     *
-     * @param category ...
-     * @param budgetSum ...
-     * @return ...
-     */
-    public GiftInputData findgift(final String category, final double budgetSum) {
-        GiftInputData giftInputData = null;
-        enums.Category category1 = utils.Utils.stringToCategory(category);
-
-        for (GiftInputData gift:gifts) {
-            if (category1.equals(gift.getCategory()) && gift.getQuantity() > 0) {
-                if (giftInputData == null) {
-                    if (Double.compare(budgetSum, gift.getPrice()) > 0) {
-                        giftInputData = gift;
-                    }
-                } else {
-                    if (gift.getPrice() < giftInputData.getPrice()) {
-                        if (Double.compare(budgetSum, gift.getPrice()) > 0) {
-                            giftInputData = gift;
-                        }
-                    }
-                }
-            }
-        }
-
-        return giftInputData;
-    }
-
-    /**
-     *
+     * Atribuie fiecarui copil cadourile, in ordinea scorurilor de cumintenie a oraselor
      */
     @Override
     public void giftList() {
@@ -55,6 +26,7 @@ public class NiceScoreCityGifts implements GiftStrategy {
         GiftInputData gift;
         double budget;
         commands.ApplyCommands commands = new commands.ApplyCommands();
+        IdGift find = new IdGift(input);
 
         for (String key:input.getNiceScoreCity().keySet()) {
             for (ChildInputData child : childInputData) {
@@ -65,7 +37,7 @@ public class NiceScoreCityGifts implements GiftStrategy {
                     if (budget != 0) {
                         if (prefgifts != null) {
                             for (String preference : prefgifts) {
-                                gift = findgift(preference, budget);
+                                gift = find.findgift(preference, budget);
                                 if (gift != null) {
                                     budget -= gift.getPrice();
                                     child.getReceivedGifts().add(gift);

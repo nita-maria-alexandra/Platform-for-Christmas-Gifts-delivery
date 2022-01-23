@@ -23,8 +23,8 @@ public class AverageCityCommand implements Command {
 
     /**
      *
-     * @param city ...
-     * @return ...
+     * Returneaza media aritmetica a averageScore-urilor copiilor
+     * care se afla in orasul @city
      */
     public Double getNiceScoreCity(final String city) {
         double sum = 0.0;
@@ -47,7 +47,8 @@ public class AverageCityCommand implements Command {
     }
 
     /**
-     *
+     * Adauga in niceScoreCity orasele si media corespunzatoare
+     * fiecarui oras, in ordine descrescatoare
      */
     @Override
     public void execute() {

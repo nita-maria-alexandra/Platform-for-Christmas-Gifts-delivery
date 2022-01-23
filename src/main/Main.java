@@ -51,8 +51,7 @@ public final class Main {
 
     /**
      *
-     * @param i ...
-     * @throws IOException ...
+     * @throws IOException in cazul unei exceptii la citire sau scriere
      */
     public static void action(final int i) throws IOException {
         writeo.AnnualChildren out = new writeo.AnnualChildren();

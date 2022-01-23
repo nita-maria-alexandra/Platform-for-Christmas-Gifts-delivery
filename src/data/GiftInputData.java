@@ -51,7 +51,7 @@ public class GiftInputData {
 
     /**
      *
-     * @return ...
+     * @return returneaza @quantity
      */
     @com.fasterxml.jackson.annotation.JsonIgnore
     public int getQuantity() {
@@ -60,7 +60,7 @@ public class GiftInputData {
 
     /**
      *
-     * @param quantity ...
+     * setter
      */
     @com.fasterxml.jackson.annotation.JsonProperty
     public void setQuantity(final int quantity) {

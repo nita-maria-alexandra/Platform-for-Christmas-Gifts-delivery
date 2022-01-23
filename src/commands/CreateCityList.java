@@ -10,7 +10,7 @@ public class CreateCityList implements Command {
     }
 
     /**
-     *
+     * Creeaza o lista de cu toate orasele in care poate ajunge Mosul
      */
     @Override
     public void execute() {

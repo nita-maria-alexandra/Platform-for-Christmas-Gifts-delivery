@@ -55,7 +55,7 @@ public class AnnualChanges {
 
     /**
      *
-     * @return ...
+     * @return returneaza @strategy
      */
     public String getStrategy() {
         return strategy;

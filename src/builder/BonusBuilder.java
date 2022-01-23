@@ -14,8 +14,7 @@ public final class BonusBuilder {
 
         /**
          *
-         * @param niceScoreBonus ...
-         * @return ...
+         * Se calculeaza noul averageScore, in functie de bonusul adaugat
          */
         public Builder applyBonus(final Double niceScoreBonus) {
             if (averageScore != 0) {
@@ -31,7 +30,7 @@ public final class BonusBuilder {
 
         /**
          *
-         * @return ...
+         * @return returenaza o instanta a clase "BonusBuilder"
          */
         public BonusBuilder build() {
             return new BonusBuilder(this);

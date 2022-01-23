@@ -38,7 +38,6 @@ public class Input {
         this.initialData = initialData;
         this.annualChanges = annualChanges;
         this.children = children;
-        //this.niceScoreCity = null;
     }
 
     /**
@@ -91,7 +90,7 @@ public class Input {
 
     /**
      *
-     * @return ...
+     * @return returneaza @niceScoreCity
      */
     public LinkedHashMap<String, Double> getNiceScoreCity() {
         return niceScoreCity;
